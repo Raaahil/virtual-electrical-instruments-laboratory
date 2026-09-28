@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Electrical Instruments Laboratory</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand" id="brandHome" title="Virtual Electrical Instruments Laboratory">
+        <div class="brand-icon">⚡</div>
+        <div class="brand-text">
+          <h1>Virtual Electrical Instruments Laboratory</h1>
+        </div>
+      </div>
+      <nav class="main-nav" aria-label="Main Navigation">
+        <button class="nav-link active" data-target="home">Home</button>
+        <button class="nav-link" data-target="instruments">Instruments</button>
+        <button class="nav-link" data-target="about">About</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Shell -->
+  <main class="main-content">
+
+    <!-- 1. HOME SECTION -->
+    <section id="home" class="page-section active">
+      <div class="hero-card">
+        <span class="hero-pill">Virtual Laboratory Simulator</span>
+        <h2 class="hero-title">Virtual Electrical Instruments Laboratory</h2>
+        <p class="hero-subtitle">Practice electrical measurements using virtual instruments without physical laboratory hardware.</p>
+        <p class="hero-desc">
+          Students can select an electrical instrument, enter measurement values, choose the required range/type, and obtain a virtual measurement reading.
+        </p>
+        <button class="btn btn-primary" id="btnExplore">Explore Instruments →</button>
+      </div>
+
+      <div class="home-feature-header">
+        <h3 class="home-feature-title">Measurement Categories</h3>
+        <p class="home-feature-subtitle">Explore 12 calibrated laboratory instruments across essential electrical engineering domains.</p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-box" data-cat="voltage-current">
+          <div class="feature-icon-badge">V/A</div>
+          <h4>Voltage & Current</h4>
+          <p>Digital Multimeter (DMM), Voltmeter, and Ammeter with multi-scale range selection.</p>
+        </div>
+        <div class="feature-box" data-cat="power-energy">
+          <div class="feature-icon-badge">W</div>
+          <h4>Power & Energy</h4>
+          <p>Wattmeter, Induction Energy Meter, and Power Factor Meter for single-phase circuits.</p>
+        </div>
+        <div class="feature-box" data-cat="resistance-components">
+          <div class="feature-icon-badge">Ω</div>
+          <h4>Resistance & Components</h4>
+          <p>Precision Ohmmeter and LCR Meter for measuring R, L, C, and component Q-factors.</p>
+        </div>
+        <div class="feature-box" data-cat="waveforms-signals">
+          <div class="feature-icon-badge">~</div>
+          <h4>Waveforms & Signals</h4>
+          <p>Oscilloscope (CRO), Function Generator, and digital Frequency Counter.</p>
+        </div>
+        <div class="feature-box" data-cat="power-supply">
+          <div class="feature-icon-badge">DC</div>
+          <h4>Power Supply</h4>
+          <p>Benchtop Regulated DC Power Supply featuring Constant Voltage and Constant Current modes.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. INSTRUMENTS SECTION -->
+    <section id="instruments" class="page-section">
+      
+      <!-- Instruments Listing View -->
+      <div id="instrumentsListing">
+        <div class="page-header">
+          <h2>Virtual Electrical Instruments</h2>
+          <p>Select any of the 12 instruments below to open its dedicated measurement workspace.</p>
+        </div>
+
+        <!-- Search & Category Filters -->
+        <div class="filter-bar">
+          <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="instrumentSearch" class="search-input" placeholder="Search instruments by name (e.g., Voltmeter, Oscilloscope, DMM)...">
+          </div>
+          <div class="category-tabs" id="categoryTabs">
+            <button class="cat-btn active" data-filter="all">All (12)</button>
+            <button class="cat-btn" data-filter="voltage-current">Voltage & Current</button>
+            <button class="cat-btn" data-filter="power-energy">Power & Energy</button>
+            <button class="cat-btn" data-filter="resistance-components">Resistance & Components</button>
+            <button class="cat-btn" data-filter="waveforms-signals">Waveforms & Signals</button>
+            <button class="cat-btn" data-filter="power-supply">Power Supply</button>
+          </div>
+        </div>
+
+        <!-- 12 Clean Instrument Cards Grid -->
+        <div class="instrument-grid" id="instrumentGrid">
+          <!-- Dynamically populated from script.js -->
+        </div>
+      </div>
+
+      <!-- Dedicated Instrument Workspace View -->
+      <div id="instrumentWorkspace" class="workspace-wrapper">
+        <div class="workspace-nav">
+          <button class="back-btn" id="btnBackToList">
+            ← Back to All Instruments
+          </button>
+        </div>
+
+        <div class="workspace-card">
+          <!-- Workspace Header -->
+          <div class="workspace-header">
+            <div class="ws-title-wrap">
+              <h3 id="wsInstrumentName">Instrument Name</h3>
+              <span id="wsInstrumentCategory">Category</span>
+            </div>
+            <div class="ws-status-badge status-ready" id="wsStatusBadge">
+              ● READY FOR MEASUREMENT
+            </div>
+          </div>
+
+          <!-- Controls & Virtual Meter Display Area -->
+          <div class="workspace-body">
+            
+            <!-- Left Column: Controls & Settings -->
+            <div class="controls-col" id="wsControlsContainer">
+              <!-- Dynamically populated based on active instrument -->
+            </div>
+
+            <!-- Right Column: Digital Output & Virtual Meter Display -->
+            <div class="display-col" id="wsDisplayContainer">
+              <!-- Dynamically populated based on active instrument -->
+            </div>
+
+          </div>
+
+          <!-- Expandable How To Use Section -->
+          <div class="how-to-use-box">
+            <details class="how-to-use-details" id="wsHowToUseDetails" open>
+              <summary>
+                <span>📘 How to Use <span id="wsHowToUseTitle">this Instrument</span></span>
+                <small style="color: var(--primary); font-weight: 600;">(Click to Expand / Collapse)</small>
+              </summary>
+              <div class="how-to-use-content" id="wsHowToUseContent">
+                <!-- Dynamically populated -->
+              </div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 3. ABOUT SECTION -->
+    <section id="about" class="page-section">
+      <div class="page-header">
+        <h2>About Virtual Electrical Instruments Laboratory</h2>
+        <p>A focused educational platform for virtual electrical instrumentation and measurement practice.</p>
+      </div>
+
+      <div class="about-card">
+        <h3>Project Purpose</h3>
+        <p>
+          The <strong>Virtual Electrical Instruments Laboratory</strong> is developed as a student-friendly, software-based laboratory environment. Its primary objective is to enable electrical and electronics engineering students to practice instrument operations, parameter range selection, scale interpretations, and circuit calculations without the risk of equipment damage or the requirement for benchtop hardware.
+        </p>
+        <p>
+          Each of the 12 instruments simulates the calibrated electrical behavior of physical laboratory instruments using accurate mathematical models and deterministic formulas.
+        </p>
+
+        <h3>Key Objectives</h3>
+        <ul>
+          <li><strong>Instrument Familiarization:</strong> Learn the interface, controls, selectors, and terminal characteristics of fundamental test bench equipment.</li>
+          <li><strong>Measurement Precision:</strong> Understand the impact of measurement range selection, resolution, and overload conditions.</li>
+          <li><strong>Zero Physical Constraints:</strong> Accessible anytime from any modern web browser without specialized hardware or software installations.</li>
+          <li><strong>Core Law Application:</strong> Direct reinforcement of Ohm’s Law, Joule’s Law, power factor relationships, waveform metrics, and circuit impedance principles.</li>
+        </ul>
+
+        <h3>Instrumentation Summary & Governing Principles</h3>
+        <div class="table-responsive">
+          <table class="reference-table">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Instrument</th>
+                <th>Category</th>
+                <th>Governing Relationship / Formula</th>
+                <th>Primary Application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><strong>Digital Multimeter (DMM)</strong></td>
+                <td>Voltage & Current</td>
+                <td><code>DCV: V = Vs × R_x / (R1 + R2)</code>, <code>DCA: I = Vs / R</code>, <code>Ω: R = V / I</code></td>
+                <td>Multi-mode testing of divider nodes, loop current, and component continuity</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><strong>Voltmeter</strong></td>
+                <td>Voltage & Current</td>
+                <td><code>V = Vs × R2 / (R1 + R2)</code> (Voltage divider node measurement)</td>
+                <td>Measuring potential difference across circuit elements from supply Vs</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><strong>Ammeter</strong></td>
+                <td>Voltage & Current</td>
+                <td><code>I = Vs / R</code> (Ohm's Law series loop current)</td>
+                <td>Measuring series loop current flowing from voltage source Vs through resistance R</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><strong>Wattmeter</strong></td>
+                <td>Power & Energy</td>
+                <td><code>P = V × I × cos(φ)</code>, <code>S = V × I</code>, <code>Q = √(S² - P²)</code></td>
+                <td>Measuring real active power consumed by AC/DC loads from V, I, and PF</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><strong>Energy Meter</strong></td>
+                <td>Power & Energy</td>
+                <td><code>Energy = (V × I × PF × Time) / 1000 (kWh)</code></td>
+                <td>Recording cumulative energy consumed over operating duration in hours</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td><strong>Ohmmeter</strong></td>
+                <td>Resistance & Components</td>
+                <td><code>R = V_test / I_test</code> (Voltage-current test ratio)</td>
+                <td>Measuring unknown component resistance from internal test excitation</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td><strong>Oscilloscope (CRO)</strong></td>
+                <td>Waveforms & Signals</td>
+                <td><code>Vpp = 2 × Vp</code>, <code>Vrms (Sine: Vp/√2, Sq: Vp, Tri: Vp/√3)</code>, <code>T = 1 / f</code></td>
+                <td>Calibrated graticule visualization and automatic parametric measurement</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td><strong>Function Generator</strong></td>
+                <td>Waveforms & Signals</td>
+                <td>Signal synthesis (Sine, Square, Triangle, Sawtooth)</td>
+                <td>Benchtop source instrument generating reference AC excitation waveforms</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td><strong>Frequency Counter</strong></td>
+                <td>Waveforms & Signals</td>
+                <td><code>f = N / T_gate</code>, <code>T_period = 1 / f</code></td>
+                <td>Measuring incoming signal repetition rate from counted cycles N over gate time</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td><strong>LCR Meter</strong></td>
+                <td>Resistance & Components</td>
+                <td><code>L = XL / (2πf)</code>, <code>C = 1 / (2πfXC)</code>, <code>R = V / I</code></td>
+                <td>Determining inductance and capacitance from measured AC reactances and frequency</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td><strong>Power Factor Meter</strong></td>
+                <td>Power & Energy</td>
+                <td><code>PF = P / (V × I)</code> or <code>PF = cos(φ)</code></td>
+                <td>Determining active-to-apparent power ratio and lagging/leading nature</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td><strong>DC Power Supply</strong></td>
+                <td>Power Supply</td>
+                <td><code>I_req = V_set / R_load</code> (CV Mode vs CC Current Clamping Mode)</td>
+                <td>Benchtop source instrument supplying regulated DC voltage and current protection</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div>
+        <strong>Virtual Electrical Instruments Laboratory</strong> • Department of Electrical Engineering
+      </div>
+      <div>
+        Pure Virtual Instrumentation Simulator (No External Plugins Required)
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-notice"></div>
+
+  <!-- JavaScript Functionality -->
+  <script src="script.js"></script>
+</body>
+</html>
